@@ -6,20 +6,12 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
 service:
-  type: ClusterIP
-  port: 80
-  targetPort: 80
-
+  type: NodePort
+  nodePort: 30005
 namespace:
   name: 5-demo
-  
 labels:
-  app:
     name: bb-app
     version: 7.5.0
     env: uat

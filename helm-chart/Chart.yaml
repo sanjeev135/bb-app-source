@@ -1,4 +1,21 @@
-apiVersion: v2
-name: block-buster-helm-app
-description: A Helm chart for Block Buster App
-version: 7.5.0
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: 5-demo-helm-release-git-helm-bb-app
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: helm-chart
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: GitRepository
+        name: 5-demo-source-git-helm-bb-app
+  interval: 10s
+  targetNamespace: 5-demo
+  values:
+    labels:
+      app:
+        env: dev
+        name: block-buster
+        version: 7.5.0
